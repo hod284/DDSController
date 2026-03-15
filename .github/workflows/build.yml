@@ -1,0 +1,50 @@
+name: DDSController Build
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore
+        run: dotnet restore DDSController/DDSController.csproj
+
+      - name: Build
+        run: |
+          dotnet build DDSController/DDSController.csproj `
+            --configuration Release `
+            --no-restore `
+            -p:Platform=x64
+
+      - name: Publish
+        run: |
+          dotnet publish DDSController/DDSController.csproj `
+            --configuration Release `
+            --runtime win-x64 `
+            --self-contained false `
+            -p:Platform=x64 `
+            --output ./publish
+
+      - name: ZIP
+        run: |
+          $zip = "DDSController_b${{ github.run_number }}.zip"
+          Compress-Archive -Path "./publish/*" -DestinationPath "./$zip" -Force
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: DDSController_b${{ github.run_number }}
+          path: DDSController_b${{ github.run_number }}.zip
+          retention-days: 30

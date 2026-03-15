@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DDSController")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7b3be053f20b732d7bfd6ffddb6d0006a62dc4a1")]
 [assembly: System.Reflection.AssemblyProductAttribute("DDSController")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DDSController")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

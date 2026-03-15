@@ -14,4 +14,7 @@
     <PackageReference Include="Rti.ConnextDds.Native" Version="7.6.0" />
     <PackageReference Include="Rti.ConnextDds.RequestReply" Version="7.6.0" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include=".github\workflows\" />
+  </ItemGroup>
 </Project>
