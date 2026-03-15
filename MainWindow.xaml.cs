@@ -265,7 +265,7 @@ namespace DDSController
         DdsTopic _active = null;
         Dictionary<string,Button> _tabBtns = new Dictionary<string,Button>();
 
-        CancellationTokenSource _pubCts, _subCts;
+        CancellationTokenSource _pubCts;
         bool _pubLoop = false, _subLoop = false;
         long _tx = 0, _rx = 0;
 
