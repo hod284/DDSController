@@ -1,0 +1,171 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "Microsoft.Bcl.HashCode/1.1.0": {
+        "runtime": {
+          "lib/netcoreapp2.1/Microsoft.Bcl.HashCode.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "4.700.19.56404"
+          }
+        }
+      },
+      "Rti.ConnextDds/7.6.0": {
+        "dependencies": {
+          "Microsoft.Bcl.HashCode": "1.1.0",
+          "Rti.ConnextDds.Native": "7.6.0",
+          "System.Collections.Immutable": "1.7.1",
+          "System.Runtime.CompilerServices.Unsafe": "4.7.1"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Rti.ConnextDds.dll": {
+            "assemblyVersion": "7.6.0.0",
+            "fileVersion": "7.6.0.0"
+          }
+        }
+      },
+      "Rti.ConnextDds.Extra/7.6.0": {
+        "dependencies": {
+          "Rti.ConnextDds": "7.6.0"
+        },
+        "runtime": {
+          "lib/netstandard2.1/Rti.ConnextDds.Extra.dll": {
+            "assemblyVersion": "7.6.0.0",
+            "fileVersion": "7.6.0.0"
+          }
+        }
+      },
+      "Rti.ConnextDds.Native/7.6.0": {
+        "runtimeTargets": {
+          "runtimes/linux-arm64/native/libnddsc.so": {
+            "rid": "linux-arm64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-arm64/native/libnddscore.so": {
+            "rid": "linux-arm64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-x64/native/libnddsc.so": {
+            "rid": "linux-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-x64/native/libnddscore.so": {
+            "rid": "linux-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/osx-arm64/native/libnddsc.dylib": {
+            "rid": "osx-arm64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/osx-arm64/native/libnddscore.dylib": {
+            "rid": "osx-arm64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x64/native/nddsc.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x64/native/nddscore.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x64/native/vcruntime140.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "14.28.29914.0"
+          }
+        }
+      },
+      "Rti.ConnextDds.RequestReply/7.6.0": {
+        "dependencies": {
+          "Rti.ConnextDds": "7.6.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Rti.ConnextDds.RequestReply.dll": {
+            "assemblyVersion": "7.6.0.0",
+            "fileVersion": "7.6.0.0"
+          }
+        }
+      },
+      "System.Collections.Immutable/1.7.1": {
+        "runtime": {
+          "lib/netstandard2.0/System.Collections.Immutable.dll": {
+            "assemblyVersion": "1.2.5.0",
+            "fileVersion": "4.700.20.21406"
+          }
+        }
+      },
+      "System.Runtime.CompilerServices.Unsafe/4.7.1": {
+        "runtime": {
+          "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.dll": {
+            "assemblyVersion": "4.0.6.0",
+            "fileVersion": "4.700.20.12001"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Microsoft.Bcl.HashCode/1.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-J2G1k+u5unBV+aYcwxo94ip16Rkp65pgWFb0R6zwJipzWNMgvqlWeuI7/+R+e8bob66LnSG+llLJ+z8wI94cHg==",
+      "path": "microsoft.bcl.hashcode/1.1.0",
+      "hashPath": "microsoft.bcl.hashcode.1.1.0.nupkg.sha512"
+    },
+    "Rti.ConnextDds/7.6.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-yDb+mH2xm8IREpP3lgwP54Xzax+D0p9QsKaUackOjxTu7X+JCM4jfR+tp9XtLkwzFUKNgqIxXnqCAhvkM7show==",
+      "path": "rti.connextdds/7.6.0",
+      "hashPath": "rti.connextdds.7.6.0.nupkg.sha512"
+    },
+    "Rti.ConnextDds.Extra/7.6.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-alSFWIpzRTkEzRncfWeY2LFJnbcNSrFqZ8wWEyQKXH7nsjzr+Kf/SkF/V1ydT9ElVxvqteZSUFWSyAuHDOXX1w==",
+      "path": "rti.connextdds.extra/7.6.0",
+      "hashPath": "rti.connextdds.extra.7.6.0.nupkg.sha512"
+    },
+    "Rti.ConnextDds.Native/7.6.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-lbNJitlpGii1oo0noyMl7TuprrEmHtVTnKjXqU12lZDRzINJjlsIFOla47eNYQzydyXKbvntLvgTLcAV5RgFKQ==",
+      "path": "rti.connextdds.native/7.6.0",
+      "hashPath": "rti.connextdds.native.7.6.0.nupkg.sha512"
+    },
+    "Rti.ConnextDds.RequestReply/7.6.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-TnTHsOjLMM8U6upH1UomK078n45lA4BO68GS5MrycHznN2U1a5ZlCmgdVhUNiF3zYP6qWACeb6UFRFFWt0ImOA==",
+      "path": "rti.connextdds.requestreply/7.6.0",
+      "hashPath": "rti.connextdds.requestreply.7.6.0.nupkg.sha512"
+    },
+    "System.Collections.Immutable/1.7.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-B43Zsz5EfMwyEbnObwRxW5u85fzJma3lrDeGcSAV1qkhSRTNY5uXAByTn9h9ddNdhM+4/YoLc/CI43umjwIl9Q==",
+      "path": "system.collections.immutable/1.7.1",
+      "hashPath": "system.collections.immutable.1.7.1.nupkg.sha512"
+    },
+    "System.Runtime.CompilerServices.Unsafe/4.7.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-zOHkQmzPCn5zm/BH+cxC1XbUS3P4Yoi3xzW7eRgVpDR2tPGSzyMZ17Ig1iRkfJuY0nhxkQQde8pgePNiA7z7TQ==",
+      "path": "system.runtime.compilerservices.unsafe/4.7.1",
+      "hashPath": "system.runtime.compilerservices.unsafe.4.7.1.nupkg.sha512"
+    }
+  }
+}

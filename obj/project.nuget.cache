@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "e7gPtKBfgcQ=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\j\\Documents\\GitHub\\DDSController\\DDSController.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\j\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.0\\microsoft.bcl.hashcode.1.1.0.nupkg.sha512",
+    "C:\\Users\\j\\.nuget\\packages\\rti.connextdds\\7.6.0\\rti.connextdds.7.6.0.nupkg.sha512",
+    "C:\\Users\\j\\.nuget\\packages\\rti.connextdds.extra\\7.6.0\\rti.connextdds.extra.7.6.0.nupkg.sha512",
+    "C:\\Users\\j\\.nuget\\packages\\rti.connextdds.native\\7.6.0\\rti.connextdds.native.7.6.0.nupkg.sha512",
+    "C:\\Users\\j\\.nuget\\packages\\rti.connextdds.requestreply\\7.6.0\\rti.connextdds.requestreply.7.6.0.nupkg.sha512",
+    "C:\\Users\\j\\.nuget\\packages\\system.collections.immutable\\1.7.1\\system.collections.immutable.1.7.1.nupkg.sha512",
+    "C:\\Users\\j\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.7.1\\system.runtime.compilerservices.unsafe.4.7.1.nupkg.sha512"
+  ],
+  "logs": []
+}

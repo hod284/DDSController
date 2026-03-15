@@ -1,0 +1,514 @@
+<Window x:Class="DDSController.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:DDSController"
+        Title="RTI DDS Controller" Height="920" Width="1480"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        ResizeMode="CanResizeWithGrip">
+
+    <Window.Resources>
+        <SolidColorBrush x:Key="ThBgDeep"  Color="#0A0E1A"/>
+        <SolidColorBrush x:Key="ThBgPanel" Color="#0F1628"/>
+        <SolidColorBrush x:Key="ThBgCard"  Color="#161D35"/>
+        <SolidColorBrush x:Key="ThBorder"  Color="#1A2840"/>
+        <SolidColorBrush x:Key="ThAccent"  Color="#00E5FF"/>
+        <SolidColorBrush x:Key="ThAccent2" Color="#00FF88"/>
+        <SolidColorBrush x:Key="ThWarn"    Color="#FF6B35"/>
+        <SolidColorBrush x:Key="ThPurple"  Color="#7B61FF"/>
+        <SolidColorBrush x:Key="ThText"    Color="#E8EDF5"/>
+        <SolidColorBrush x:Key="ThTextDim" Color="#6B7A99"/>
+
+        <Style x:Key="Btn" TargetType="Button">
+            <Setter Property="Background"      Value="#1A2840"/>
+            <Setter Property="Foreground"      Value="{DynamicResource ThAccent}"/>
+            <Setter Property="BorderBrush"     Value="{DynamicResource ThAccent}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding"         Value="10,5"/>
+            <Setter Property="FontFamily"      Value="Consolas"/>
+            <Setter Property="FontSize"        Value="11"/>
+            <Setter Property="Cursor"          Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="bd" Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="3">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"
+                                              Margin="{TemplateBinding Padding}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="bd" Property="Opacity" Value="0.72"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" Value="0.3"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="BtnG" TargetType="Button" BasedOn="{StaticResource Btn}">
+            <Setter Property="Foreground"  Value="{DynamicResource ThAccent2}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource ThAccent2}"/>
+        </Style>
+        <Style x:Key="BtnO" TargetType="Button" BasedOn="{StaticResource Btn}">
+            <Setter Property="Foreground"  Value="{DynamicResource ThWarn}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource ThWarn}"/>
+        </Style>
+        <Style x:Key="BtnP" TargetType="Button" BasedOn="{StaticResource Btn}">
+            <Setter Property="Foreground"  Value="{DynamicResource ThPurple}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource ThPurple}"/>
+        </Style>
+
+        <Style x:Key="BoolBtn" TargetType="Button">
+            <Setter Property="Width"           Value="72"/>
+            <Setter Property="Height"          Value="26"/>
+            <Setter Property="FontFamily"      Value="Consolas"/>
+            <Setter Property="FontSize"        Value="11"/>
+            <Setter Property="FontWeight"      Value="Bold"/>
+            <Setter Property="Cursor"          Value="Hand"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="3">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="TB" TargetType="TextBox">
+            <Setter Property="Background"      Value="#0A0E1A"/>
+            <Setter Property="Foreground"      Value="{DynamicResource ThAccent}"/>
+            <Setter Property="BorderBrush"     Value="{DynamicResource ThBorder}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding"         Value="5,3"/>
+            <Setter Property="FontFamily"      Value="Consolas"/>
+            <Setter Property="FontSize"        Value="11"/>
+            <Setter Property="CaretBrush"      Value="{DynamicResource ThAccent}"/>
+        </Style>
+
+        <Style x:Key="Lbl" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{DynamicResource ThTextDim}"/>
+            <Setter Property="FontFamily" Value="Consolas"/>
+            <Setter Property="FontSize"   Value="10"/>
+            <Setter Property="Margin"     Value="0,0,0,2"/>
+        </Style>
+        <Style x:Key="Sec" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Consolas"/>
+            <Setter Property="FontSize"   Value="11"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+    </Window.Resources>
+
+    <Border CornerRadius="8" Background="{DynamicResource ThBgDeep}"
+            BorderBrush="{DynamicResource ThBorder}" BorderThickness="1">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="42"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="26"/>
+            </Grid.RowDefinitions>
+
+            <!-- TITLE BAR -->
+            <Border Grid.Row="0" Background="{DynamicResource ThBgPanel}"
+                    CornerRadius="8,8,0,0"
+                    MouseLeftButtonDown="TitleBar_MouseLeftButtonDown">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="14,0">
+                        <Ellipse Width="8" Height="8" Fill="{DynamicResource ThAccent}" Margin="0,0,10,0">
+                            <Ellipse.Effect><DropShadowEffect Color="#00E5FF" BlurRadius="10" ShadowDepth="0"/></Ellipse.Effect>
+                        </Ellipse>
+                        <TextBlock Text="RTI DDS CONTROLLER" FontFamily="Consolas" FontSize="13"
+                                   FontWeight="Bold" Foreground="{DynamicResource ThAccent}" VerticalAlignment="Center"/>
+                        <TextBlock Text="  //  " Foreground="{DynamicResource ThBorder}" FontFamily="Consolas" FontSize="13" VerticalAlignment="Center"/>
+                        <TextBlock x:Name="TbStatusIndicator" Text="● OFFLINE" FontFamily="Consolas" FontSize="11" Foreground="#FF4444" VerticalAlignment="Center"/>
+                        <TextBlock Text="  //  " Foreground="{DynamicResource ThBorder}" FontFamily="Consolas" FontSize="13" VerticalAlignment="Center"/>
+                        <TextBlock Text="THEME" FontFamily="Consolas" FontSize="9" Foreground="{DynamicResource ThTextDim}" VerticalAlignment="Center" Margin="0,0,7,0"/>
+                        <StackPanel x:Name="ThemePalette" Orientation="Horizontal" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="0,0,6,0">
+                        <Button Content="─" Width="30" Height="28" Click="BtnMinimize_Click"
+                                Background="Transparent" Foreground="{DynamicResource ThTextDim}" BorderThickness="0" FontSize="16" Cursor="Hand"/>
+                        <Button Content="□" Width="30" Height="28" Click="BtnMaximize_Click"
+                                Background="Transparent" Foreground="{DynamicResource ThTextDim}" BorderThickness="0" FontSize="14" Cursor="Hand"/>
+                        <Button Content="✕" Width="30" Height="28" Click="BtnClose_Click"
+                                Background="Transparent" Foreground="{DynamicResource ThTextDim}" BorderThickness="0" FontSize="14" Cursor="Hand"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- MAIN -->
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="265"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="310"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- LEFT -->
+                <Border Grid.Column="0" Background="{DynamicResource ThBgPanel}"
+                        BorderBrush="{DynamicResource ThBorder}" BorderThickness="0,0,1,0">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <StackPanel Margin="12,10,12,12">
+
+                            <!-- IDL -->
+                            <TextBlock Text="[ IDL → DDS TYPE ]" Style="{StaticResource Sec}"
+                                       Foreground="{DynamicResource ThAccent}" Margin="0,0,0,7"/>
+
+                            <TextBlock Style="{StaticResource Lbl}"><Run Text="① IDL 파일" Foreground="{DynamicResource ThAccent}"/></TextBlock>
+                            <Grid Margin="0,0,0,5">
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="28"/></Grid.ColumnDefinitions>
+                                <TextBox x:Name="TbIdlFilePath" Style="{StaticResource TB}" Text="(*.idl 선택...)" IsReadOnly="True"/>
+                                <Button Grid.Column="1" Content="…" Margin="3,0,0,0" Style="{StaticResource Btn}" Padding="3,3" Click="BtnBrowseIdl_Click"/>
+                            </Grid>
+
+                            <TextBlock Style="{StaticResource Lbl}"><Run Text="② rtiddsgen" Foreground="{DynamicResource ThAccent}"/><Run Text="  (NDDSHOME 자동탐색)" Foreground="{DynamicResource ThTextDim}"/></TextBlock>
+                            <Grid Margin="0,0,0,5">
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="28"/></Grid.ColumnDefinitions>
+                                <TextBox x:Name="TbRtiddsgenPath" Style="{StaticResource TB}" Text="(자동탐색)" FontSize="10"/>
+                                <Button Grid.Column="1" Content="…" Margin="3,0,0,0" Style="{StaticResource Btn}" Padding="3,3" Click="BtnBrowseRtiddsgen_Click"/>
+                            </Grid>
+
+                            <TextBlock Text="출력 디렉토리" Style="{StaticResource Lbl}"/>
+                            <Grid Margin="0,0,0,7">
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="28"/></Grid.ColumnDefinitions>
+                                <TextBox x:Name="TbGenOutputDir" Style="{StaticResource TB}" Text="./gen" FontSize="10"/>
+                                <Button Grid.Column="1" Content="…" Margin="3,0,0,0" Style="{StaticResource Btn}" Padding="3,3" Click="BtnBrowseOutputDir_Click"/>
+                            </Grid>
+
+                            <Button x:Name="BtnRunAll" Content="⚡  IDL → rtiddsgen → PARSE  (원스텝)"
+                                    Style="{StaticResource BtnG}" HorizontalAlignment="Stretch" Margin="0,0,0,5"
+                                    Click="BtnRunAll_Click"/>
+
+                            <!-- 진행 상태 -->
+                            <Border Background="{DynamicResource ThBgDeep}" BorderBrush="{DynamicResource ThBorder}"
+                                    BorderThickness="1" CornerRadius="3" Padding="7,5" Margin="0,0,0,5">
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="0,0,0,2">
+                                        <Ellipse x:Name="EllStep1" Width="7" Height="7" Fill="{DynamicResource ThBorder}" Margin="0,0,6,0" VerticalAlignment="Center"/>
+                                        <TextBlock x:Name="TbStep1" Text="IDL 파일 선택" FontFamily="Consolas" FontSize="9" Foreground="{DynamicResource ThTextDim}"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="0,0,0,2">
+                                        <Ellipse x:Name="EllStep2" Width="7" Height="7" Fill="{DynamicResource ThBorder}" Margin="0,0,6,0" VerticalAlignment="Center"/>
+                                        <TextBlock x:Name="TbStep2" Text="rtiddsgen 실행" FontFamily="Consolas" FontSize="9" Foreground="{DynamicResource ThTextDim}"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Ellipse x:Name="EllStep3" Width="7" Height="7" Fill="{DynamicResource ThBorder}" Margin="0,0,6,0" VerticalAlignment="Center"/>
+                                        <TextBlock x:Name="TbStep3" Text="CS 파싱 &amp; 타입 등록" FontFamily="Consolas" FontSize="9" Foreground="{DynamicResource ThTextDim}"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+
+                            <!-- CS 직접 -->
+                            <StackPanel Orientation="Horizontal" Margin="0,3,0,3">
+                                <Rectangle Height="1" Width="50" Fill="{DynamicResource ThBorder}" VerticalAlignment="Center"/>
+                                <TextBlock Text="  또는 CS 직접  " FontFamily="Consolas" FontSize="9" Foreground="{DynamicResource ThTextDim}" VerticalAlignment="Center"/>
+                                <Rectangle Height="1" Width="50" Fill="{DynamicResource ThBorder}" VerticalAlignment="Center"/>
+                            </StackPanel>
+                            <Grid Margin="0,0,0,4">
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="28"/></Grid.ColumnDefinitions>
+                                <TextBox x:Name="TbCsFilePath" Style="{StaticResource TB}" Text="(*.cs 선택...)" IsReadOnly="True" FontSize="10"/>
+                                <Button Grid.Column="1" Content="…" Margin="3,0,0,0" Style="{StaticResource Btn}" Padding="3,3" Click="BtnBrowseCs_Click"/>
+                            </Grid>
+                            <Grid Margin="0,0,0,12">
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                <Button Content="▶  PARSE CS" Style="{StaticResource Btn}" Grid.Column="0" Margin="0,0,3,0" Click="BtnParseCsFile_Click"/>
+                                <Button Content="📄 예제" Style="{StaticResource BtnP}" Grid.Column="1" Padding="7,5" Click="BtnShowIdlExample_Click"/>
+                            </Grid>
+
+                            <Rectangle Height="1" Fill="{DynamicResource ThBorder}" Margin="0,0,0,10"/>
+
+                            <!-- QoS -->
+                            <TextBlock Text="[ QoS PROFILE ]" Style="{StaticResource Sec}"
+                                       Foreground="{DynamicResource ThPurple}" Margin="0,0,0,7"/>
+                            <TextBlock Text="QoS XML 파일" Style="{StaticResource Lbl}"/>
+                            <Grid Margin="0,0,0,4">
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="28"/></Grid.ColumnDefinitions>
+                                <TextBox x:Name="TbQosFilePath" Style="{StaticResource TB}" Text="(파일 선택...)" IsReadOnly="True"/>
+                                <Button Grid.Column="1" Content="…" Margin="3,0,0,0" Style="{StaticResource Btn}" Padding="3,3" Click="BtnBrowseQos_Click"/>
+                            </Grid>
+                            <TextBlock Text="Library" Style="{StaticResource Lbl}"/>
+                            <TextBox x:Name="TbQosLibrary" Style="{StaticResource TB}" Text="MyQosLibrary" Margin="0,0,0,4"/>
+                            <TextBlock Text="Profile" Style="{StaticResource Lbl}"/>
+                            <TextBox x:Name="TbQosProfile" Style="{StaticResource TB}" Text="MyQosProfile" Margin="0,0,0,5"/>
+                            <Grid Margin="0,0,0,4">
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                                <Button Content="미리보기" Style="{StaticResource Btn}" Grid.Column="0" Margin="0,0,2,0" Click="BtnLoadQos_Click"/>
+                                <Button Content="✔ APPLY" Style="{StaticResource BtnG}" Grid.Column="1" Margin="2,0,0,0" Click="BtnApplyQos_Click"/>
+                            </Grid>
+                            <!-- QoS 미리보기 -->
+                            <Border Background="{DynamicResource ThBgDeep}" BorderBrush="{DynamicResource ThBorder}"
+                                    BorderThickness="1" Padding="6" MinHeight="40" MaxHeight="70" Margin="0,0,0,4">
+                                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                    <TextBlock x:Name="TbQosPreview" TextWrapping="Wrap" FontFamily="Consolas"
+                                               FontSize="8.5" Foreground="{DynamicResource ThTextDim}" Text="(미리보기)"/>
+                                </ScrollViewer>
+                            </Border>
+                            <!-- QoS 상태 -->
+                            <Border Background="Transparent" BorderBrush="{DynamicResource ThBorder}"
+                                    BorderThickness="1" CornerRadius="3" Padding="7,4" Margin="0,0,0,12">
+                                <StackPanel Orientation="Horizontal">
+                                    <Ellipse x:Name="EllQosStatus" Width="6" Height="6" Fill="{DynamicResource ThBorder}" Margin="0,0,6,0" VerticalAlignment="Center"/>
+                                    <TextBlock x:Name="TbQosStatus" Text="QoS 미적용" FontFamily="Consolas" FontSize="9" Foreground="{DynamicResource ThTextDim}"/>
+                                </StackPanel>
+                            </Border>
+
+                            <Rectangle Height="1" Fill="{DynamicResource ThBorder}" Margin="0,0,0,10"/>
+
+                            <!-- DOMAIN -->
+                            <TextBlock Text="[ DOMAIN CONFIG ]" Style="{StaticResource Sec}"
+                                       Foreground="{DynamicResource ThWarn}" Margin="0,0,0,7"/>
+                            <TextBlock Text="Domain ID  (0 ~ 232)" Style="{StaticResource Lbl}"/>
+                            <Grid Margin="0,0,0,5">
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                <TextBox x:Name="TbDomainId" Style="{StaticResource TB}" Text="0" FontSize="15" TextAlignment="Center"/>
+                                <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="4,0,0,0">
+                                    <Button Content="−" Width="26" Height="26" FontSize="14" Style="{StaticResource Btn}" Padding="0" Click="BtnDomainDec_Click"/>
+                                    <Button Content="+" Width="26" Height="26" FontSize="14" Style="{StaticResource Btn}" Padding="0" Margin="2,0,0,0" Click="BtnDomainInc_Click"/>
+                                </StackPanel>
+                            </Grid>
+                            <Border Background="{DynamicResource ThBgDeep}" BorderBrush="{DynamicResource ThBorder}"
+                                    BorderThickness="1" CornerRadius="3" Padding="7,5" Margin="0,0,0,6">
+                                <TextBlock TextWrapping="Wrap" FontFamily="Consolas" FontSize="9"
+                                           Foreground="{DynamicResource ThTextDim}"
+                                           Text="QoS XML에 도메인 ID가 없거나&#10;override하려면 위 값을 사용합니다."/>
+                            </Border>
+                            <TextBlock Text="Participant Name" Style="{StaticResource Lbl}"/>
+                            <TextBox x:Name="TbParticipantName" Style="{StaticResource TB}" Text="DDSController" Margin="0,0,0,5"/>
+                            <TextBlock Text="Discovery Peers" Style="{StaticResource Lbl}"/>
+                            <TextBox x:Name="TbPeers" Style="{StaticResource TB}" Text="localhost" Margin="0,0,0,10"/>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                                <Button x:Name="BtnConnect" Content="◉ CONNECT" Style="{StaticResource BtnG}"
+                                        Grid.Column="0" Margin="0,0,2,0" Click="BtnConnect_Click"/>
+                                <Button x:Name="BtnDisconnect" Content="○ DISCONNECT" Style="{StaticResource BtnO}"
+                                        Grid.Column="1" Margin="2,0,0,0" IsEnabled="False" Click="BtnDisconnect_Click"/>
+                            </Grid>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Border>
+
+                <!-- CENTER -->
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="42"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- 탭바 -->
+                    <Border Grid.Row="0" Background="{DynamicResource ThBgDeep}"
+                            BorderBrush="{DynamicResource ThBorder}" BorderThickness="0,0,0,1">
+                        <Grid>
+                            <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Hidden">
+                                <StackPanel x:Name="TopicTabBar" Orientation="Horizontal" Margin="8,6,8,0"/>
+                            </ScrollViewer>
+                            <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="0,0,8,0" VerticalAlignment="Center">
+                                <Button Content="+ TOPIC" Style="{StaticResource Btn}" Margin="0,0,4,0" Click="BtnAddTopic_Click"/>
+                                <Button Content="− REMOVE" Style="{StaticResource BtnO}" Click="BtnRemoveTopic_Click"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+
+                    <!-- 토픽 바디 -->
+                    <Border Grid.Row="1" Background="{DynamicResource ThBgPanel}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <!-- 헤더 -->
+                            <Border Grid.Row="0" Background="{DynamicResource ThBgCard}"
+                                    Padding="12,8" Margin="8,8,8,0">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="170"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="140"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Text="TOPIC" Style="{StaticResource Lbl}" VerticalAlignment="Center" Margin="0,0,7,0"/>
+                                    <TextBox x:Name="TbTopicName" Grid.Column="1" Style="{StaticResource TB}" Text="MyTopic" Margin="0,0,12,0"/>
+                                    <TextBlock Grid.Column="2" Text="TYPE" Style="{StaticResource Lbl}" VerticalAlignment="Center" Margin="0,0,7,0"/>
+                                    <TextBox x:Name="TbTopicType" Grid.Column="3" Style="{StaticResource TB}"
+                                             Text="(IDL 파싱 후)" IsReadOnly="True" Foreground="{DynamicResource ThTextDim}" Margin="0,0,12,0"/>
+                                    <StackPanel Grid.Column="5" Orientation="Horizontal" VerticalAlignment="Center">
+                                        <Ellipse x:Name="EllPublisher" Width="8" Height="8" Fill="{DynamicResource ThBorder}" Margin="0,0,4,0"/>
+                                        <TextBlock x:Name="TbPubStatus" Text="PUB" FontFamily="Consolas" FontSize="10"
+                                                   Foreground="{DynamicResource ThBorder}" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                                        <Ellipse x:Name="EllSubscriber" Width="8" Height="8" Fill="{DynamicResource ThBorder}" Margin="0,0,4,0"/>
+                                        <TextBlock x:Name="TbSubStatus" Text="SUB" FontFamily="Consolas" FontSize="10"
+                                                   Foreground="{DynamicResource ThBorder}" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+
+                            <!-- 필드 -->
+                            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Margin="8,6,8,4">
+                                <StackPanel x:Name="FieldsPanel"/>
+                            </ScrollViewer>
+
+                            <!-- Pub/Sub 바 (위아래 분리) -->
+                            <Border Grid.Row="2" Background="{DynamicResource ThBgDeep}"
+                                    BorderBrush="{DynamicResource ThBorder}" BorderThickness="0,1,0,0">
+                                <StackPanel>
+                                    <!-- PUBLISHER -->
+                                    <Border Background="{DynamicResource ThBgDeep}"
+                                            BorderBrush="{DynamicResource ThBorder}" BorderThickness="0,0,0,1"
+                                            Padding="12,7">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Grid.Column="0" Text="▲ PUBLISHER" FontFamily="Consolas" FontSize="10"
+                                                       FontWeight="Bold" Foreground="{DynamicResource ThAccent2}"
+                                                       VerticalAlignment="Center" Margin="0,0,14,0"/>
+                                            <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="0,0,8,0">
+                                                <TextBlock Text="Hz" Style="{StaticResource Lbl}" VerticalAlignment="Center" Margin="0,0,4,0"/>
+                                                <TextBox x:Name="TbPublishRate" Style="{StaticResource TB}" Width="52" Text="10"/>
+                                            </StackPanel>
+                                            <Button Grid.Column="2" Content="ONCE" Style="{StaticResource BtnG}"
+                                                    Margin="0,0,5,0" Click="BtnPublishOnce_Click"/>
+                                            <Button Grid.Column="3" x:Name="BtnPublishLoop" Content="▶ LOOP"
+                                                    Style="{StaticResource BtnG}" Click="BtnPublishLoop_Click"/>
+                                        </Grid>
+                                    </Border>
+                                    <!-- SUBSCRIBER -->
+                                    <Border Background="{DynamicResource ThBgPanel}" Padding="12,7">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Grid.Column="0" Text="▼ SUBSCRIBER" FontFamily="Consolas" FontSize="10"
+                                                       FontWeight="Bold" Foreground="{DynamicResource ThAccent}"
+                                                       VerticalAlignment="Center" Margin="0,0,14,0"/>
+                                            <Button Grid.Column="2" x:Name="BtnSubscribe" Content="▶ SUBSCRIBE"
+                                                    Style="{StaticResource Btn}" Margin="0,0,5,0" Click="BtnSubscribe_Click"/>
+                                            <Button Grid.Column="3" x:Name="BtnUnsubscribe" Content="■ STOP"
+                                                    Style="{StaticResource BtnO}" IsEnabled="False" Click="BtnUnsubscribe_Click"/>
+                                        </Grid>
+                                    </Border>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+                    </Border>
+                </Grid>
+
+                <!-- RIGHT -->
+                <Border Grid.Column="2" Background="{DynamicResource ThBgDeep}"
+                        BorderBrush="{DynamicResource ThBorder}" BorderThickness="1,0,0,0">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="170"/>
+                        </Grid.RowDefinitions>
+
+                        <Border Grid.Row="0" Background="{DynamicResource ThBgPanel}" Padding="10,6">
+                            <Grid>
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                <TextBlock Text="[ LIVE LOG ]" Style="{StaticResource Sec}"
+                                           Foreground="{DynamicResource ThPurple}" VerticalAlignment="Center"/>
+                                <Button Grid.Column="1" Content="CLEAR" Style="{StaticResource Btn}"
+                                        FontSize="9" Padding="7,3" Click="BtnClearLog_Click"/>
+                            </Grid>
+                        </Border>
+
+                        <ListBox x:Name="LogListBox" Grid.Row="1"
+                                 Background="Transparent" BorderThickness="0"
+                                 FontFamily="Consolas" FontSize="10"
+                                 VirtualizingPanel.ScrollUnit="Pixel"
+                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="ListBoxItem">
+                                    <Setter Property="Padding" Value="8,1"/>
+                                    <Setter Property="Background" Value="Transparent"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ListBoxItem">
+                                                <Border Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}">
+                                                    <ContentPresenter/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding}" TextWrapping="Wrap"
+                                               Foreground="{Binding Converter={x:Static local:LogColorConverter.Instance}}"/>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+
+                        <Border Grid.Row="2" Background="{DynamicResource ThBgPanel}"
+                                BorderBrush="{DynamicResource ThBorder}" BorderThickness="0,1,0,0" Padding="9,7">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="0" Text="[ RX DATA ]" Style="{StaticResource Sec}"
+                                           Foreground="{DynamicResource ThAccent}" Margin="0,0,0,5"/>
+                                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                                    <TextBlock x:Name="TbReceivedData" TextWrapping="Wrap" FontFamily="Consolas"
+                                               FontSize="9" Foreground="{DynamicResource ThAccent}" Opacity="0.55"
+                                               Text="(구독 대기 중...)"/>
+                                </ScrollViewer>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </Border>
+            </Grid>
+
+            <!-- STATUS BAR -->
+            <Border Grid.Row="2" Background="{DynamicResource ThBgPanel}"
+                    CornerRadius="0,0,8,8" BorderBrush="{DynamicResource ThBorder}" BorderThickness="0,1,0,0">
+                <Grid Margin="12,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock x:Name="TbStatusMsg" Grid.Column="0" Text="대기 중"
+                               FontFamily="Consolas" FontSize="10" Foreground="{DynamicResource ThTextDim}" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Text="  |  " Foreground="{DynamicResource ThBorder}"
+                               FontFamily="Consolas" FontSize="10" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="TbPublishCount" Grid.Column="2" Text="TX: 0  RX: 0"
+                               FontFamily="Consolas" FontSize="10" Foreground="{DynamicResource ThTextDim}" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Column="4" Text="RTI Connext DDS 7.6.0  ·  WPF Controller v3.0"
+                               FontFamily="Consolas" FontSize="9" Foreground="{DynamicResource ThBorder}" VerticalAlignment="Center"/>
+                </Grid>
+            </Border>
+        </Grid>
+    </Border>
+</Window>

@@ -1,0 +1,387 @@
+{
+  "version": 3,
+  "targets": {
+    "net8.0-windows7.0": {
+      "Microsoft.Bcl.HashCode/1.1.0": {
+        "type": "package",
+        "compile": {
+          "ref/netcoreapp2.1/Microsoft.Bcl.HashCode.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.1/Microsoft.Bcl.HashCode.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Rti.ConnextDds/7.6.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Bcl.HashCode": "1.1.0",
+          "Rti.ConnextDds.Native": "7.6.0",
+          "System.Collections.Immutable": "1.7.1",
+          "System.Runtime.CompilerServices.Unsafe": "4.7.1"
+        },
+        "compile": {
+          "lib/netstandard2.0/Rti.ConnextDds.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Rti.ConnextDds.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Rti.ConnextDds.Extra/7.6.0": {
+        "type": "package",
+        "dependencies": {
+          "Rti.ConnextDds": "7.6.0"
+        },
+        "compile": {
+          "lib/netstandard2.1/Rti.ConnextDds.Extra.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.1/Rti.ConnextDds.Extra.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Rti.ConnextDds.Native/7.6.0": {
+        "type": "package",
+        "runtimeTargets": {
+          "runtimes/linux-arm64/native/libnddsc.so": {
+            "assetType": "native",
+            "rid": "linux-arm64"
+          },
+          "runtimes/linux-arm64/native/libnddscore.so": {
+            "assetType": "native",
+            "rid": "linux-arm64"
+          },
+          "runtimes/linux-x64/native/libnddsc.so": {
+            "assetType": "native",
+            "rid": "linux-x64"
+          },
+          "runtimes/linux-x64/native/libnddscore.so": {
+            "assetType": "native",
+            "rid": "linux-x64"
+          },
+          "runtimes/osx-arm64/native/libnddsc.dylib": {
+            "assetType": "native",
+            "rid": "osx-arm64"
+          },
+          "runtimes/osx-arm64/native/libnddscore.dylib": {
+            "assetType": "native",
+            "rid": "osx-arm64"
+          },
+          "runtimes/win-x64/native/nddsc.dll": {
+            "assetType": "native",
+            "rid": "win-x64"
+          },
+          "runtimes/win-x64/native/nddscore.dll": {
+            "assetType": "native",
+            "rid": "win-x64"
+          },
+          "runtimes/win-x64/native/vcruntime140.dll": {
+            "assetType": "native",
+            "rid": "win-x64"
+          }
+        }
+      },
+      "Rti.ConnextDds.RequestReply/7.6.0": {
+        "type": "package",
+        "dependencies": {
+          "Rti.ConnextDds": "7.6.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Rti.ConnextDds.RequestReply.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Rti.ConnextDds.RequestReply.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "System.Collections.Immutable/1.7.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/System.Collections.Immutable.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Collections.Immutable.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "System.Runtime.CompilerServices.Unsafe/4.7.1": {
+        "type": "package",
+        "compile": {
+          "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.dll": {
+            "related": ".xml"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Microsoft.Bcl.HashCode/1.1.0": {
+      "sha512": "J2G1k+u5unBV+aYcwxo94ip16Rkp65pgWFb0R6zwJipzWNMgvqlWeuI7/+R+e8bob66LnSG+llLJ+z8wI94cHg==",
+      "type": "package",
+      "path": "microsoft.bcl.hashcode/1.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/Microsoft.Bcl.HashCode.dll",
+        "lib/net461/Microsoft.Bcl.HashCode.xml",
+        "lib/netcoreapp2.1/Microsoft.Bcl.HashCode.dll",
+        "lib/netcoreapp2.1/Microsoft.Bcl.HashCode.xml",
+        "lib/netstandard2.0/Microsoft.Bcl.HashCode.dll",
+        "lib/netstandard2.0/Microsoft.Bcl.HashCode.xml",
+        "lib/netstandard2.1/Microsoft.Bcl.HashCode.dll",
+        "lib/netstandard2.1/Microsoft.Bcl.HashCode.xml",
+        "microsoft.bcl.hashcode.1.1.0.nupkg.sha512",
+        "microsoft.bcl.hashcode.nuspec",
+        "ref/net461/Microsoft.Bcl.HashCode.dll",
+        "ref/netcoreapp2.1/Microsoft.Bcl.HashCode.dll",
+        "ref/netstandard2.0/Microsoft.Bcl.HashCode.dll",
+        "ref/netstandard2.1/Microsoft.Bcl.HashCode.dll",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
+    "Rti.ConnextDds/7.6.0": {
+      "sha512": "yDb+mH2xm8IREpP3lgwP54Xzax+D0p9QsKaUackOjxTu7X+JCM4jfR+tp9XtLkwzFUKNgqIxXnqCAhvkM7show==",
+      "type": "package",
+      "path": "rti.connextdds/7.6.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "lib/netstandard2.0/Rti.ConnextDds.dll",
+        "lib/netstandard2.0/Rti.ConnextDds.xml",
+        "rti.connextdds.7.6.0.nupkg.sha512",
+        "rti.connextdds.nuspec",
+        "rti_icon.png"
+      ]
+    },
+    "Rti.ConnextDds.Extra/7.6.0": {
+      "sha512": "alSFWIpzRTkEzRncfWeY2LFJnbcNSrFqZ8wWEyQKXH7nsjzr+Kf/SkF/V1ydT9ElVxvqteZSUFWSyAuHDOXX1w==",
+      "type": "package",
+      "path": "rti.connextdds.extra/7.6.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "lib/netstandard2.1/Rti.ConnextDds.Extra.dll",
+        "lib/netstandard2.1/Rti.ConnextDds.Extra.xml",
+        "rti.connextdds.extra.7.6.0.nupkg.sha512",
+        "rti.connextdds.extra.nuspec",
+        "rti_icon.png"
+      ]
+    },
+    "Rti.ConnextDds.Native/7.6.0": {
+      "sha512": "lbNJitlpGii1oo0noyMl7TuprrEmHtVTnKjXqU12lZDRzINJjlsIFOla47eNYQzydyXKbvntLvgTLcAV5RgFKQ==",
+      "type": "package",
+      "path": "rti.connextdds.native/7.6.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "rti.connextdds.native.7.6.0.nupkg.sha512",
+        "rti.connextdds.native.nuspec",
+        "rti_icon.png",
+        "runtimes/linux-arm64/native/libnddsc.so",
+        "runtimes/linux-arm64/native/libnddscore.so",
+        "runtimes/linux-x64/native/libnddsc.so",
+        "runtimes/linux-x64/native/libnddscore.so",
+        "runtimes/osx-arm64/native/libnddsc.dylib",
+        "runtimes/osx-arm64/native/libnddscore.dylib",
+        "runtimes/win-x64/native/nddsc.dll",
+        "runtimes/win-x64/native/nddscore.dll",
+        "runtimes/win-x64/native/vcruntime140.dll"
+      ]
+    },
+    "Rti.ConnextDds.RequestReply/7.6.0": {
+      "sha512": "TnTHsOjLMM8U6upH1UomK078n45lA4BO68GS5MrycHznN2U1a5ZlCmgdVhUNiF3zYP6qWACeb6UFRFFWt0ImOA==",
+      "type": "package",
+      "path": "rti.connextdds.requestreply/7.6.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "lib/netstandard2.0/Rti.ConnextDds.RequestReply.dll",
+        "lib/netstandard2.0/Rti.ConnextDds.RequestReply.xml",
+        "rti.connextdds.requestreply.7.6.0.nupkg.sha512",
+        "rti.connextdds.requestreply.nuspec",
+        "rti_icon.png"
+      ]
+    },
+    "System.Collections.Immutable/1.7.1": {
+      "sha512": "B43Zsz5EfMwyEbnObwRxW5u85fzJma3lrDeGcSAV1qkhSRTNY5uXAByTn9h9ddNdhM+4/YoLc/CI43umjwIl9Q==",
+      "type": "package",
+      "path": "system.collections.immutable/1.7.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/System.Collections.Immutable.dll",
+        "lib/net461/System.Collections.Immutable.xml",
+        "lib/netstandard1.0/System.Collections.Immutable.dll",
+        "lib/netstandard1.0/System.Collections.Immutable.xml",
+        "lib/netstandard1.3/System.Collections.Immutable.dll",
+        "lib/netstandard1.3/System.Collections.Immutable.xml",
+        "lib/netstandard2.0/System.Collections.Immutable.dll",
+        "lib/netstandard2.0/System.Collections.Immutable.xml",
+        "lib/portable-net45+win8+wp8+wpa81/System.Collections.Immutable.dll",
+        "lib/portable-net45+win8+wp8+wpa81/System.Collections.Immutable.xml",
+        "system.collections.immutable.1.7.1.nupkg.sha512",
+        "system.collections.immutable.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
+    "System.Runtime.CompilerServices.Unsafe/4.7.1": {
+      "sha512": "zOHkQmzPCn5zm/BH+cxC1XbUS3P4Yoi3xzW7eRgVpDR2tPGSzyMZ17Ig1iRkfJuY0nhxkQQde8pgePNiA7z7TQ==",
+      "type": "package",
+      "path": "system.runtime.compilerservices.unsafe/4.7.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/System.Runtime.CompilerServices.Unsafe.dll",
+        "lib/net461/System.Runtime.CompilerServices.Unsafe.xml",
+        "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.dll",
+        "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.xml",
+        "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
+        "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.xml",
+        "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
+        "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.xml",
+        "ref/net461/System.Runtime.CompilerServices.Unsafe.dll",
+        "ref/net461/System.Runtime.CompilerServices.Unsafe.xml",
+        "ref/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
+        "ref/netstandard1.0/System.Runtime.CompilerServices.Unsafe.xml",
+        "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
+        "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.xml",
+        "system.runtime.compilerservices.unsafe.4.7.1.nupkg.sha512",
+        "system.runtime.compilerservices.unsafe.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net8.0-windows7.0": [
+      "Rti.ConnextDds >= 7.6.0",
+      "Rti.ConnextDds.Extra >= 7.6.0",
+      "Rti.ConnextDds.Native >= 7.6.0",
+      "Rti.ConnextDds.RequestReply >= 7.6.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\j\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\j\\Documents\\GitHub\\DDSController\\DDSController.csproj",
+      "projectName": "DDSController",
+      "projectPath": "C:\\Users\\j\\Documents\\GitHub\\DDSController\\DDSController.csproj",
+      "packagesPath": "C:\\Users\\j\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\j\\Documents\\GitHub\\DDSController\\obj\\",
+      "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\j\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net8.0-windows"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net8.0-windows7.0": {
+          "targetAlias": "net8.0-windows",
+          "projectReferences": {}
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      },
+      "SdkAnalysisLevel": "9.0.300"
+    },
+    "frameworks": {
+      "net8.0-windows7.0": {
+        "targetAlias": "net8.0-windows",
+        "dependencies": {
+          "Rti.ConnextDds": {
+            "target": "Package",
+            "version": "[7.6.0, )"
+          },
+          "Rti.ConnextDds.Extra": {
+            "target": "Package",
+            "version": "[7.6.0, )"
+          },
+          "Rti.ConnextDds.Native": {
+            "target": "Package",
+            "version": "[7.6.0, )"
+          },
+          "Rti.ConnextDds.RequestReply": {
+            "target": "Package",
+            "version": "[7.6.0, )"
+          }
+        },
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          },
+          "Microsoft.WindowsDesktop.App.WPF": {
+            "privateAssets": "none"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.308/PortableRuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}
